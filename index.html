@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TAMA Recovery</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:18px;background:radial-gradient(circle at 50% 0,#7c3aed,#25113e 38%,#08050d 78%);font-family:Arial,sans-serif;color:#fff}.wrap{width:min(430px,100%)}.logo{text-align:center;font-weight:900;font-size:30px;letter-spacing:4px;margin-bottom:18px}.card{background:#15101df2;border:1px solid #ffffff18;border-radius:22px;padding:25px 22px;box-shadow:0 20px 70px #0009}.profile{display:none;text-align:center;margin-bottom:20px}.avatar{width:112px;height:112px;border-radius:18px;object-fit:cover;border:3px solid #8b5cf6;background:#21172c;display:block;margin:0 auto 10px}.name{font-weight:800;font-size:18px}.user{font-size:13px;color:#999;margin-top:4px}.icon{width:64px;height:64px;margin:0 auto 17px;border-radius:50%;display:grid;place-items:center;background:#7c3aed;font-size:30px}h1{text-align:center;font-size:23px;margin:0 0 7px}.desc{text-align:center;color:#aaa;font-size:14px;line-height:1.5;margin:0 0 22px}label{display:block;color:#ccc;font-size:13px;margin:0 0 7px}input{width:100%;padding:14px;border-radius:11px;border:1px solid #453953;background:#0f0b14;color:#fff;outline:none;font-size:15px;margin-bottom:11px}button{width:100%;padding:14px;border:0;border-radius:11px;background:linear-gradient(135deg,#8b5cf6,#6d28d9);color:#fff;font-weight:700;font-size:15px;cursor:pointer;margin-top:4px}button:disabled{opacity:.6}.error{text-align:center;color:#f87171;font-size:13px;margin-top:13px;display:none}.result{text-align:center;display:none}.result .avatar{width:145px;height:145px}.ok{display:inline-block;padding:7px 12px;border-radius:20px;background:#22c55e1a;color:#4ade80;font-size:13px;margin:10px 0}.result p{color:#aaa;font-size:14px}.secondary{background:#241d2d;border:1px solid #443850;margin-top:10px}
+</style></head><body><div class="wrap"><div class="logo">TAMA</div><div class="card">
+
+<section id="step1"><div class="icon">✓</div><h1>Pemulihan Akun</h1><p class="desc">Masukkan username Roblox untuk melanjutkan.</p>
+<label>Username Roblox</label><input id="username" placeholder="Contoh: Builderman" maxlength="20" autocomplete="off">
+<button id="findBtn">Lanjutkan</button><div id="error1" class="error"></div></section>
+
+<section id="step2" style="display:none">
+<div class="profile"><img id="avatar2" class="avatar" alt="Avatar"><div id="name2" class="name"></div><div id="user2" class="user"></div></div>
+<div class="icon">🔒</div><h1>Password Baru</h1><p class="desc">Masukkan password baru dan konfirmasi password.</p>
+<label>Password Baru</label><input id="password" type="password" placeholder="Masukkan password baru" autocomplete="new-password">
+<label>Konfirmasi Password</label><input id="confirm" type="password" placeholder="Ulangi password baru" autocomplete="new-password">
+<button id="recoverBtn">Pulihkan Akun</button><div id="error2" class="error"></div></section>
+
+<section id="result" class="result"><img id="avatar3" class="avatar" alt="Avatar"><div id="display3" class="name"></div><div class="ok">✓ Akun berhasil dipulihkan</div><p>Password baru berhasil dikonfirmasi.</p><button class="secondary" onclick="location.reload()">Selesai</button></section>
+
+</div></div><script>
+const $=id=>document.getElementById(id);let account=null;
+async function findAccount(){const username=$("username").value.trim();$("error1").style.display="none";if(!username){$("error1").textContent="Masukkan username terlebih dahulu.";$("error1").style.display="block";return}
+$("findBtn").disabled=true;$("findBtn").textContent="Mencari...";
+try{const r=await fetch("/api/roblox",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({username})});const d=await r.json();if(!r.ok||!d.ok)throw Error(d.error||"Akun tidak ditemukan.");account=d.user;
+if(account.avatar)$("avatar2").src=account.avatar;$("name2").textContent=account.displayName||account.username;$("user2").textContent="@"+account.username;$("step1").style.display="none";$("step2").style.display="block";$("step2").querySelector(".profile").style.display="block";
+}catch(e){$("error1").textContent=e.message;$("error1").style.display="block"}finally{$("findBtn").disabled=false;$("findBtn").textContent="Lanjutkan"}}
+function recover(){const p=$("password").value,c=$("confirm").value;$("error2").style.display="none";if(p.length<6){$("error2").textContent="Password minimal 6 karakter.";$("error2").style.display="block";return}if(p!==c){$("error2").textContent="Konfirmasi password tidak cocok.";$("error2").style.display="block";return}
+$("display3").textContent="@"+account.username;if(account.avatar)$("avatar3").src=account.avatar;$("password").value="";$("confirm").value="";$("step2").style.display="none";$("result").style.display="block"}
+$("findBtn").onclick=findAccount;$("recoverBtn").onclick=recover;$("username").onkeydown=e=>e.key==="Enter"&&findAccount();$("confirm").onkeydown=e=>e.key==="Enter"&&recover();
+</script></body></html>

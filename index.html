@@ -2,74 +2,57 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TAMA - Pemulihan Akun Roblox</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TAMA - Pemulihan Akun</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,sans-serif}
-body{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(circle at top,#6d28d9 0,#241044 35%,#08050d 75%);color:#fff}
-.container{width:100%;max-width:430px}.logo{text-align:center;font-size:30px;font-weight:900;letter-spacing:2px;margin-bottom:22px}
-.card{background:rgba(20,15,30,.88);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:30px 24px;box-shadow:0 20px 70px rgba(0,0,0,.4);backdrop-filter:blur(15px)}
-.icon{width:70px;height:70px;margin:0 auto 18px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#7c3aed;font-size:32px}
-h1{text-align:center;font-size:24px;margin-bottom:9px}.desc{text-align:center;color:#aaa;font-size:14px;line-height:1.6;margin-bottom:25px}
-label{display:block;font-size:13px;color:#ccc;margin-bottom:8px}input{width:100%;padding:15px;border-radius:12px;border:1px solid #393040;background:#120d18;color:white;outline:none;font-size:15px;margin-bottom:14px}input:focus{border-color:#8b5cf6}
-button{width:100%;padding:15px;border:0;border-radius:12px;background:linear-gradient(135deg,#8b5cf6,#6d28d9);color:#fff;font-size:15px;font-weight:700;cursor:pointer}button:disabled{opacity:.6;cursor:not-allowed}
-.loading{display:none;text-align:center;color:#bbb;margin-top:18px;font-size:13px}.result{display:none;text-align:center}.avatar{width:130px;height:130px;border-radius:18px;object-fit:cover;display:block;margin:0 auto 18px;background:#18121f;border:3px solid #8b5cf6}.username{font-size:20px;font-weight:800;margin-bottom:8px}
-.success{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:30px;background:rgba(34,197,94,.12);color:#4ade80;font-size:13px;margin-bottom:14px}.result p{color:#aaa;font-size:14px;line-height:1.6;margin-bottom:20px}.reset{background:#241d2d;border:1px solid #3b3245}.error{display:none;color:#f87171;font-size:13px;margin-bottom:14px;text-align:center}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(circle at top,#7c3aed,#241044 38%,#08050d 78%);font-family:Arial,sans-serif;color:#fff}.wrap{width:100%;max-width:430px}.logo{text-align:center;font-size:30px;font-weight:900;letter-spacing:3px;margin-bottom:20px}.card{background:rgba(20,15,30,.9);border:1px solid #3b3150;border-radius:22px;padding:28px 24px;box-shadow:0 20px 70px #0008}.icon{width:68px;height:68px;border-radius:50%;background:#7c3aed;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;font-size:32px}h1{text-align:center;font-size:24px;margin:0 0 9px}.desc{text-align:center;color:#aaa;font-size:14px;line-height:1.6;margin:0 0 24px}label{display:block;font-size:13px;color:#ccc;margin-bottom:8px}input{width:100%;padding:15px;border:1px solid #41364e;background:#110d17;color:#fff;border-radius:12px;outline:0;font-size:15px;margin-bottom:14px}input:focus{border-color:#8b5cf6}button{width:100%;padding:15px;border:0;border-radius:12px;background:linear-gradient(135deg,#8b5cf6,#6d28d9);color:#fff;font-weight:700;font-size:15px;cursor:pointer}.loading,.error{display:none;text-align:center;font-size:13px;margin-top:14px}.loading{color:#aaa}.error{color:#f87171}.result{display:none;text-align:center}.avatar{width:130px;height:130px;object-fit:cover;border-radius:18px;border:3px solid #8b5cf6;background:#18121f;margin:0 auto 16px;display:block}.username{font-size:20px;font-weight:800;margin-bottom:9px}.success{display:inline-block;padding:7px 12px;border-radius:20px;background:#22c55e1c;color:#4ade80;font-size:13px;margin-bottom:13px}.result p{color:#aaa;font-size:14px;line-height:1.6;margin:0 0 20px}.reset{background:#241d2d;border:1px solid #443850;margin-top:10px}
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="logo">TAMA</div>
-  <div class="card">
-    <div id="form">
-      <div class="icon">✓</div>
-      <h1>Pemulihan Akun</h1>
-      <p class="desc">Masukkan username Roblox untuk melanjutkan proses pemulihan akun.</p>
-      <label>Username Roblox</label>
-      <input id="username" type="text" placeholder="Contoh: Builderman" autocomplete="off">
-      <div class="error" id="error">Username tidak ditemukan.</div>
-      <button id="createBtn" onclick="recover()">Create</button>
-      <div class="loading" id="loading">Mencari akun dan avatar...</div>
-    </div>
-
-    <div id="result" class="result">
-      <img id="avatar" class="avatar" alt="Avatar Roblox">
-      <div class="success">✓ Akun Berhasil Dipulihkan</div>
-      <div class="username" id="resultName"></div>
-      <p>Data akun berhasil ditemukan. Pastikan Anda melanjutkan proses keamanan melalui layanan resmi Roblox.</p>
-      <button class="reset" onclick="location.reload()">Kembali</button>
-    </div>
-  </div>
+<div class="wrap">
+<div class="logo">TAMA</div>
+<div class="card">
+<div id="form">
+<div class="icon">✓</div>
+<h1>Pemulihan Akun</h1>
+<p class="desc">Masukkan username Roblox untuk melanjutkan proses pemulihan akun.</p>
+<label>Username Roblox</label>
+<input id="username" placeholder="Contoh: Builderman" autocomplete="off">
+<div id="error" class="error">Username tidak ditemukan.</div>
+<button id="btn" onclick="recover()">Create</button>
+<div id="loading" class="loading">Mencari akun dan avatar...</div>
+</div>
+<div id="result" class="result">
+<img id="avatar" class="avatar" alt="Avatar Roblox">
+<div id="name" class="username"></div>
+<div class="success">✓ Akun berhasil dipulihkan</div>
+<p>Proses pemulihan untuk akun ini telah selesai.</p>
+<button onclick="location.reload()">Selesai</button>
+</div>
+</div>
 </div>
 <script>
 async function recover(){
-  const username=document.getElementById('username').value.trim();
-  const error=document.getElementById('error');
-  const loading=document.getElementById('loading');
-  const btn=document.getElementById('createBtn');
-  if(!username){error.textContent='Username wajib diisi.';error.style.display='block';return}
-  error.style.display='none'; loading.style.display='block'; btn.disabled=true;
-  try{
-    const userRes=await fetch('https://users.roblox.com/v1/usernames/users',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({usernames:[username],excludeBannedUsers:false})});
-    if(!userRes.ok) throw new Error('Gagal menghubungi Roblox');
-    const data=await userRes.json();
-    if(!data.data || !data.data.length){throw new Error('Username tidak ditemukan')}
-    const user=data.data[0];
-    const thumb=await fetch(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${user.id}&size=180x180&format=Png&isCircular=false`);
-    const thumbData=await thumb.json();
-    const image=thumbData.data?.[0]?.imageUrl;
-    if(!image) throw new Error('Avatar tidak tersedia');
-    document.getElementById('avatar').src=image;
-    document.getElementById('resultName').textContent='@'+user.name;
-    document.getElementById('form').style.display='none';
-    document.getElementById('result').style.display='block';
-  }catch(e){
-    error.textContent=e.message || 'Terjadi kesalahan. Coba lagi.';
-    error.style.display='block';
-  }finally{loading.style.display='none';btn.disabled=false}
+ const input=document.getElementById('username'), u=input.value.trim();
+ const err=document.getElementById('error'),load=document.getElementById('loading'),btn=document.getElementById('btn');
+ err.style.display='none';
+ if(!u){err.textContent='Masukkan username terlebih dahulu.';err.style.display='block';return}
+ btn.disabled=true;load.style.display='block';
+ try{
+   const r=await fetch('https://users.roblox.com/v1/usernames/users',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({usernames:[u],excludeBannedUsers:false})});
+   const d=await r.json();
+   if(!d.data||!d.data.length)throw new Error();
+   const user=d.data[0];
+   document.getElementById('name').textContent='@'+user.name;
+   document.getElementById('avatar').src='https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds='+user.id+'&size=150x150&format=Png&isCircular=false';
+   document.getElementById('form').style.display='none';
+   document.getElementById('result').style.display='block';
+ }catch(e){
+   err.textContent='Username Roblox tidak ditemukan.';
+   err.style.display='block';
+ }finally{btn.disabled=false;load.style.display='none'}
 }
-
-document.getElementById('username').addEventListener('keydown',e=>{if(e.key==='Enter') recover()});
+document.getElementById('username').addEventListener('keydown',e=>{if(e.key==='Enter')recover()});
 </script>
 </body>
 </html>

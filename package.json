@@ -1,0 +1,11 @@
+{
+  "name": "tama-recovery",
+  "version": "5.0.1",
+  "private": true,
+  "engines": {
+    "node": "22.x"
+  },
+  "dependencies": {
+    "axios": "^1.11.0"
+  }
+}
